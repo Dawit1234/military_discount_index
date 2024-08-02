@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form with Military Discount Calculator</title>
+    <style>
+        /* Setting the background color to orange */
+        body {
+            background-color: #FFA500; /* Orange color */
+            color: #000000; /* Black text color */
+        }
+    
+        /* Styling for the calculator section (keeping it distinct if needed) */
+        .calculator-section {
+            background-color: #FF8C00; /* Darker orange for distinction */
+            padding: 10px;
+            border-radius: 5px;
+            color: #000000; /* Black text color */
+        }
+    
+        h1 {
+            text-align: center;
+            color: #000000; /* Black text color */
+        }
+    
+        label {
+            color: #000000; /* Black text color */
+        }
+    
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #000000; /* Black text color */
+        }
+    
+        input[type="submit"], button {
+            background-color: #FF8C00; /* Darker orange */
+            color: #000000; /* Black text */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    
+        input[type="submit"]:hover, button:hover {
+            background-color: #FF4500; /* Slightly different shade on hover */
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Title for the form -->
+    <h1>Student Registration Form with Military Discount Calculator</h1>
+    
+    <!-- Form for student registration -->
+    <form action="#" method="post">
+
+        <!-- Student information fields -->
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required min="1"><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br><br>
+        
+        <label for="state">State:</label>
+        <select id="state" name="state">
+            <!-- List of states here -->
+        </select><br><br>
+
+        <label for="militaryStatus">Are you a member of the military?</label>
+        <input type="checkbox" id="militaryStatus" name="militaryStatus" value="Yes">
+        <label for="militaryStatus">Yes</label><br><br>
+
+        <!-- Calculator Section with Charlotte colors -->
+        <div class="calculator-section">
+            <label for="courseQuantity">Number of Courses:</label>
+            <input type="number" id="courseQuantity" name="courseQuantity" required><br><br>
+            
+            <!-- Button to calculate total -->
+            <button type="button" onclick="calculateTotal()">Calculate Total</button><br><br>
+
+            <!-- Display area for the total, discount, and final amount -->
+            <p>Total Cost (before discount): $<span id="totalAmountBeforeDiscount">0</span></p>
+            <p>Military Discount: $<span id="discountAmount">0</span></p>
+            <p>Final Amount: $<span id="finalAmount">0</span></p>
+        </div>
+        
+        <!-- Submit button for the form -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Footer with year and name -->
+    <div class="footer">
+        &copy; 2024 Dawit
+    </div>
+
+    <script>
+        // Function to calculate total cost based on the number of courses
+        function calculateTotal() {
+            // Retrieve the course quantity input value
+            var quantity = parseInt(document.getElementById('courseQuantity').value);
+
+            // Set the price per course
+            var pricePerCourse = 500; // Assuming each course costs $500
+
+            // Calculate the total cost
+            var total = quantity * pricePerCourse;
+
+            // Check if the military discount applies
+            var isMilitary = document.getElementById('militaryStatus').checked;
+            var discount = 0;
+
+            if (isMilitary) {
+                // Applying a 10% military discount
+                discount = (total * 10) / 100;
+            }
+
+            // Calculate the final amount after discount
+            var finalAmount = total - discount;
+
+            // Display the total cost (before discount), discount, and final amount
+            document.getElementById('totalAmountBeforeDiscount').textContent = total;
+            document.getElementById('discountAmount').textContent = discount;
+            document.getElementById('finalAmount').textContent = finalAmount;
+        }
+    </script>
+</body>
+</html>
